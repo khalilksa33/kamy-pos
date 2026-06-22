@@ -189,6 +189,7 @@ function Inventory({ db, updateDb, t, lang }) {
       <div style={{
         flex: 1,
         overflowY: 'auto',
+        overflowX: 'auto',
         backgroundColor: 'var(--bg-card)',
         borderRadius: '12px',
         border: '1px solid var(--border-color)'

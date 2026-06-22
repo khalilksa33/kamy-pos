@@ -92,7 +92,7 @@ function App() {
       <main style={{
         flex: 1,
         height: '100vh',
-        overflowY: 'auto',
+        overflow: 'hidden',
         display: 'flex',
         flexDirection: 'column',
         position: 'relative'

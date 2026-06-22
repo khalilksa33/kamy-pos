@@ -236,7 +236,7 @@ function Terminal({ db, updateDb, currentUser, t, lang }) {
         </div>
 
         {/* Categories Horizontal Slider */}
-        <div style={{ display: 'flex', gap: '8px', overflowX: 'auto', paddingBottom: '4px' }}>
+        <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
           {categories.map(cat => (
             <button
               key={cat}
