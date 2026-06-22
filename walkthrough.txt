@@ -1,0 +1,56 @@
+Walkthrough - ZATCA-Compliant KAMY POS System
+
+We have successfully integrated ZATCA Phase 2 compliance, added daily/monthly/annual reporting filters in the analytics tab, and verified compilation.
+
+==================================================
+1. Daily, Monthly, and Annual Reporting
+==================================================
+- Segmented Filter UI: Added filter buttons (All Time, Daily, Monthly, Annual) to the header of the Analytics tab (Dashboard.jsx).
+- Filtered Metrics Math: Configured all analytics totals (Gross Revenue, Net Profit, Transactions, Category Demand, and Payment Mode Distribution) to calculate dynamically over the filtered date-range subsets.
+- Filtered Logs List: Configured the Sales Archive log list to filter transactions matching the selected timeframe.
+
+==================================================
+2. ZATCA Phase 2 Integration Module
+==================================================
+- Settings Tab Panel: Added a dedicated ZATCA Phase 2 Integration card to Settings.jsx displaying fields for serial number, registration metadata, and address fields.
+- Keypair & CSR Generation: Integrated a cryptographic utility electron/zatca.js that generates RSA-2048 keys and Certificate Signing Requests (CSR) with ZATCA-mandated Subject DN values.
+- ZATCA Compliance API Client: Implemented native IPC requests to register devices with the ZATCA Sandbox API using an OTP code, returning and storing the Signed compliance certificate (CSID) and authorization secret key.
+- Cryptographic Invoice Signing: Added signature generation inside checkouts. ReceiptModal.jsx now signs simplified tax invoices, hashes the invoice XML, and incorporates the SHA-256 hash and digital signature values in the printed QR code.
+
+==================================================
+3. Receipt Modal Layout Fix
+==================================================
+- Added "alignItems: 'flex-start'" to the flex row modal body wrapper inside ReceiptModal.jsx.
+- This resolves the CSS flexbox stretch behavior that restricted the white thermal receipt card to the height of the parent viewport. The receipt background now naturally expands to contain the entire length of the items list, ZATCA QR code, and pricing totals.
+
+==================================================
+4. Dynamic Store/Software Branding
+==================================================
+- Updated Sidebar.jsx to receive storeName as a prop (db.store.name) from App.jsx.
+- Sidebar branding, logo initials (e.g. "A" for Antigravity, "K" for KAMY POS), and titles now automatically synchronize with your custom store settings dynamically.
+
+==================================================
+5. Persistent Database Format Backfilling
+==================================================
+- Added a database sanitizer function sanitizeDb inside database.js.
+- Upon fetching persistent data from local storage or native files, it checks if nameEn and nameAr keys are missing (such as on existing records saved with the older layout) and backfills them dynamically using default translations matched by SKU. This ensures item names immediately appear translated.
+
+==================================================
+6. Clean Settings Panel
+==================================================
+- Removed the diagnostic Application Specs card from the bottom right of the Settings screen as requested, creating a cleaner interface.
+
+==================================================
+7. Multilingual Product Name Localization
+==================================================
+- Inventory Form: Split the single product name input field into Product Name (English) and Product Name (Arabic) fields. The form validates both and stores them as nameEn and nameAr keys.
+- Inventory List View: Dynamically renders product names depending on the currently active language toggle (Arabic/English).
+- Transaction Mapping: Updated checkout transaction mapper in Terminal.jsx to preserve nameEn and nameAr within saved transactions.
+- Receipt Templates: Updated ReceiptModal.jsx to display bilingual names side-by-side (e.g. موز / Bananas) for both the on-screen modal and printable receipts.
+- Analytics & History: Updated transaction details list in Dashboard.jsx to correctly render Arabic or English product names.
+
+==================================================
+8. Desktop Packaging Setup
+==================================================
+- Packaged and compiled the final installer using electron-builder:
+  dist-desktop/KAMY POS Setup 1.0.0.exe
