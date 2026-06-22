@@ -28,14 +28,17 @@ function loadDatabase() {
         }
       },
       products: [
-        { id: "1", name: "Fresh Bananas (1kg)", nameEn: "Fresh Bananas (1kg)", nameAr: "موز طازج (1 كجم)", sku: "4011", category: "Produce", price: 1.99, cost: 0.80, stock: 120, lowStockLimit: 20 },
-        { id: "2", name: "Whole Milk 1 Gallon", nameEn: "Whole Milk 1 Gallon", nameAr: "حليب كامل الدسم 1 جالون", sku: "078742351866", category: "Dairy", price: 3.49, cost: 2.10, stock: 45, lowStockLimit: 10 },
-        { id: "3", name: "White Bread", nameEn: "White Bread", nameAr: "خبز أبيض", sku: "078742004243", category: "Bakery", price: 2.29, cost: 1.10, stock: 30, lowStockLimit: 8 },
-        { id: "4", name: "Brown Eggs (Dozen)", nameEn: "Brown Eggs (Dozen)", nameAr: "بيض بني (طبق)", sku: "078742111422", category: "Dairy", price: 4.19, cost: 2.50, stock: 15, lowStockLimit: 12 },
-        { id: "5", name: "Cereal Honey Oats", nameEn: "Cereal Honey Oats", nameAr: "رقائق الشوفان بالعسل", sku: "038000200484", category: "Pantry", price: 3.99, cost: 2.00, stock: 50, lowStockLimit: 15 },
-        { id: "6", name: "Coca-Cola 2L", nameEn: "Coca-Cola 2L", nameAr: "كوكاكولا 2 لتر", sku: "049000028904", category: "Beverages", price: 2.49, cost: 1.20, stock: 80, lowStockLimit: 20 },
-        { id: "7", name: "Organic Apples (1kg)", nameEn: "Organic Apples (1kg)", nameAr: "تفاح عضوي (1 كجم)", sku: "94012", category: "Produce", price: 4.99, cost: 2.50, stock: 8, lowStockLimit: 15 },
-        { id: "8", name: "Frozen Pizza", nameEn: "Frozen Pizza", nameAr: "بيتزا مجمدة", sku: "072179000184", category: "Frozen", price: 6.99, cost: 3.80, stock: 25, lowStockLimit: 5 }
+        { id: "1", name: "Fresh Bananas (1kg)", nameEn: "Fresh Bananas (1kg)", nameAr: "موز طازج (1 كجم)", sku: "4011", category: "Produce", price: 1.99, cost: 0.80, stock: 250, lowStockLimit: 20 },
+        { id: "2", name: "Whole Milk 1 Gallon", nameEn: "Whole Milk 1 Gallon", nameAr: "حليب كامل الدسم 1 جالون", sku: "078742351866", category: "Dairy", price: 3.49, cost: 2.10, stock: 150, lowStockLimit: 10 },
+        { id: "3", name: "White Bread", nameEn: "White Bread", nameAr: "خبز أبيض", sku: "078742004243", category: "Bakery", price: 2.29, cost: 1.10, stock: 120, lowStockLimit: 8 },
+        { id: "4", name: "Brown Eggs (Dozen)", nameEn: "Brown Eggs (Dozen)", nameAr: "بيض بني (طبق)", sku: "078742111422", category: "Dairy", price: 4.19, cost: 2.50, stock: 100, lowStockLimit: 12 },
+        { id: "5", name: "Cereal Honey Oats", nameEn: "Cereal Honey Oats", nameAr: "رقائق الشوفان بالعسل", sku: "038000200484", category: "Pantry", price: 3.99, cost: 2.00, stock: 150, lowStockLimit: 15 },
+        { id: "6", name: "Coca-Cola 2L", nameEn: "Coca-Cola 2L", nameAr: "كوكاكولا 2 لتر", sku: "049000028904", category: "Beverages", price: 2.49, cost: 1.20, stock: 200, lowStockLimit: 20 },
+        { id: "7", name: "Organic Apples (1kg)", nameEn: "Organic Apples (1kg)", nameAr: "تفاح عضوي (1 كجم)", sku: "94012", category: "Produce", price: 4.99, cost: 2.50, stock: 120, lowStockLimit: 15 },
+        { id: "8", name: "Frozen Pizza", nameEn: "Frozen Pizza", nameAr: "بيتزا مجمدة", sku: "072179000184", category: "Frozen", price: 6.99, cost: 3.80, stock: 100, lowStockLimit: 5 },
+        { id: "9", name: "Chocolate Bar", nameEn: "Chocolate Bar", nameAr: "شوكولاتة", sku: "034000402062", category: "Pantry", price: 1.49, cost: 0.60, stock: 150, lowStockLimit: 20 },
+        { id: "10", name: "Potato Chips", nameEn: "Potato Chips", nameAr: "رقائق البطاطس", sku: "028400070566", category: "Pantry", price: 1.99, cost: 0.90, stock: 200, lowStockLimit: 20 },
+        { id: "11", name: "Bottled Water 6-Pack", nameEn: "Bottled Water 6-Pack", nameAr: "مياه معبأة 6 حبات", sku: "075720000814", category: "Beverages", price: 2.99, cost: 1.00, stock: 180, lowStockLimit: 20 }
       ],
       transactions: [],
       users: [

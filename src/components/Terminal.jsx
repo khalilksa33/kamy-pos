@@ -188,7 +188,7 @@ function Terminal({ db, updateDb, currentUser, t, lang }) {
   return (
     <div style={{ display: 'flex', flex: 1, height: '100%' }} className="animate-fade-in">
       {/* Left side: Products Grid */}
-      <div style={{ flex: 1, padding: '24px', display: 'flex', flexDirection: 'column', gap: '20px', overflowY: 'auto' }}>
+      <div style={{ flex: 1, padding: '24px', display: 'flex', flexDirection: 'column', gap: '20px', overflow: 'hidden' }}>
         
         {/* Search & Barcode Scanner Simulator */}
         <div style={{ display: 'flex', gap: '12px' }}>
