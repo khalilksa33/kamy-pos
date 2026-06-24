@@ -133,7 +133,7 @@ button {
   outline: none;
   border-radius: 8px;
   font-weight: 500;
-  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: all 0.08s ease;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -150,7 +150,7 @@ button:active {
 }
 .btn-primary:hover {
   background-color: var(--accent-emerald-hover);
-  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+  box-shadow: 0 2px 6px rgba(16, 185, 129, 0.15);
 }
 
 .btn-secondary {
@@ -168,7 +168,7 @@ button:active {
 }
 .btn-danger:hover {
   background-color: var(--accent-rose-hover);
-  box-shadow: 0 4px 12px rgba(244, 63, 94, 0.3);
+  box-shadow: 0 2px 6px rgba(244, 63, 94, 0.15);
 }
 
 /* Badge indicators */

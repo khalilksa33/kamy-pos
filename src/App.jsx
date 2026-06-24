@@ -74,21 +74,7 @@ function App() {
   }
 
   return (
-    <div className="app-container">
-      <Sidebar 
-        activeTab={activeTab} 
-        setActiveTab={setActiveTab} 
-        theme={theme} 
-        toggleTheme={toggleTheme}
-        currentUser={currentUser}
-        setCurrentUser={setCurrentUser}
-        users={db.users}
-        lang={lang}
-        setLang={setLang}
-        t={t}
-        storeName={db.store.name}
-      />
-      
+    <div className="app-container" dir="ltr">
       <main style={{
         flex: 1,
         height: '100vh',
@@ -96,7 +82,7 @@ function App() {
         display: 'flex',
         flexDirection: 'column',
         position: 'relative'
-      }}>
+      }} dir={lang === 'ar' ? 'rtl' : 'ltr'}>
         {activeTab === 'terminal' && (
           <Terminal db={db} updateDb={updateDb} currentUser={currentUser} t={t} lang={lang} />
         )}
@@ -110,6 +96,20 @@ function App() {
           <Settings db={db} updateDb={updateDb} currentUser={currentUser} t={t} />
         )}
       </main>
+
+      <Sidebar 
+        activeTab={activeTab} 
+        setActiveTab={setActiveTab} 
+        theme={theme} 
+        toggleTheme={toggleTheme}
+        currentUser={currentUser}
+        setCurrentUser={setCurrentUser}
+        users={db.users}
+        lang={lang}
+        setLang={setLang}
+        t={t}
+        storeName={db.store.name}
+      />
     </div>
   );
 }

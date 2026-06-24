@@ -286,7 +286,7 @@ function Terminal({ db, updateDb, currentUser, t, lang }) {
                   cursor: isOutOfStock ? 'not-allowed' : 'pointer',
                   position: 'relative',
                   opacity: isOutOfStock ? 0.5 : 1,
-                  transition: 'transform 0.15s ease, border-color 0.15s ease',
+                  transition: 'transform 0.08s ease, border-color 0.08s ease',
                   overflow: 'hidden'
                 }}
                 className={!isOutOfStock ? "btn-secondary" : ""}

@@ -9,23 +9,23 @@ function Sidebar({ activeTab, setActiveTab, theme, toggleTheme, currentUser, set
     { id: 'settings', label: t.settings, icon: SettingsIcon },
   ];
 
-  const hasLeftBorder = lang === 'ar';
-
   return (
-    <aside style={{
-      width: 'var(--sidebar-width)',
-      backgroundColor: 'var(--bg-card)',
-      borderRight: hasLeftBorder ? 'none' : '1px solid var(--border-color)',
-      borderLeft: hasLeftBorder ? '1px solid var(--border-color)' : 'none',
-      display: 'flex',
-      flexDirection: 'column',
-      justifyContent: 'space-between',
-      padding: '24px 16px',
-      height: '100vh',
-      flexShrink: 0
-    }}>
-      {/* Brand Header */}
-      <div>
+    <aside 
+      dir={lang === 'ar' ? 'rtl' : 'ltr'}
+      style={{
+        width: 'var(--sidebar-width)',
+        backgroundColor: 'var(--bg-card)',
+        borderRight: 'none',
+        borderLeft: '1px solid var(--border-color)',
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'space-between',
+        padding: '24px 16px',
+        height: '100vh',
+        flexShrink: 0
+      }}
+    >
+      <div style={{ width: '100%' }}>
         <div style={{
           display: 'flex',
           alignItems: 'center',
@@ -54,7 +54,7 @@ function Sidebar({ activeTab, setActiveTab, theme, toggleTheme, currentUser, set
         </div>
 
         {/* Navigation Menu */}
-        <nav style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+        <nav style={{ display: 'flex', flexDirection: 'column', gap: '8px', width: '100%' }}>
           {menuItems.map((item) => {
             const Icon = item.icon;
             const isActive = activeTab === item.id;
@@ -75,7 +75,7 @@ function Sidebar({ activeTab, setActiveTab, theme, toggleTheme, currentUser, set
                   backgroundColor: isActive ? 'var(--accent-emerald)' : 'transparent',
                   textAlign: lang === 'ar' ? 'right' : 'left',
                   justifyContent: 'flex-start',
-                  transition: 'all 0.2s ease'
+                  transition: 'all 0.08s ease'
                 }}
               >
                 <Icon size={18} />
@@ -87,7 +87,7 @@ function Sidebar({ activeTab, setActiveTab, theme, toggleTheme, currentUser, set
       </div>
 
       {/* Footer / Cashier & Settings Info */}
-      <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+      <div style={{ display: 'flex', flexDirection: 'column', gap: '16px', width: '100%' }}>
         
         {/* Active Cashier Selector */}
         <div style={{

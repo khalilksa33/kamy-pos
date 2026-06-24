@@ -20,15 +20,15 @@ function generateZatcaTlvBase64(sellerName, trn, timestamp, total, vatAmount) {
     };
 
     // Tag 1: Seller Name
-    const tlv1 = getTlv(1, sellerName);
+    const tlv1 = getTlv(1, sellerName || 'Store');
     // Tag 2: VAT Registration Number (15 digits)
     const tlv2 = getTlv(2, trn || '312345678900003');
     // Tag 3: Timestamp (ISO 8601 string)
-    const tlv3 = getTlv(3, timestamp);
+    const tlv3 = getTlv(3, timestamp || new Date().toISOString());
     // Tag 4: Invoice Total (with VAT)
-    const tlv4 = getTlv(4, total.toString());
+    const tlv4 = getTlv(4, (total || 0).toString());
     // Tag 5: VAT Total
-    const tlv5 = getTlv(5, vatAmount.toString());
+    const tlv5 = getTlv(5, (vatAmount || 0).toString());
 
     // Join all TLV buffers
     const totalLen = tlv1.length + tlv2.length + tlv3.length + tlv4.length + tlv5.length;
@@ -52,7 +52,7 @@ function generateZatcaTlvBase64(sellerName, trn, timestamp, total, vatAmount) {
   }
 }
 
-function ReceiptModal({ isOpen, onClose, transaction, store }) {
+function ReceiptModal({ isOpen, onClose, transaction, store = {} }) {
   const [qrUrl, setQrUrl] = useState('');
 
   useEffect(() => {
@@ -106,13 +106,13 @@ function ReceiptModal({ isOpen, onClose, transaction, store }) {
             .qr-image { width: 120px; height: 120px; }
           </style>
         </head>
-        <body onload="window.print(); window.close();">
+        <body onload="setTimeout(() => { if (!window.printed) { window.print(); window.close(); } }, 500);">
           <div class="text-center receipt-header">
             ${store.logo ? `<img src="${store.logo}" style="max-width: 80px; max-height: 80px; margin-bottom: 6px; object-fit: contain;" /><br/>` : ''}
-            <h3 style="margin: 0; font-size: 14px;">${store.name}</h3>
-            <div>${store.address}</div>
+            <h3 style="margin: 0; font-size: 14px;">${store.name || ''}</h3>
+            <div>${store.address || ''}</div>
             <div>VAT Registration No: ${store.vatNumber || '312345678900003'}</div>
-            <div>Tel: ${store.phone}</div>
+            <div>Tel: ${store.phone || ''}</div>
           </div>
           <div class="divider"></div>
           <div>Date/الوقت: ${new Date(transaction.date).toLocaleString()}</div>
@@ -124,28 +124,28 @@ function ReceiptModal({ isOpen, onClose, transaction, store }) {
             return `
               <div class="item-row">
                 <span>${displayName} (x${item.quantity})</span>
-                <span>${store.currency} ${(item.price * item.quantity).toFixed(2)}</span>
+                <span>${store.currency || 'SAR'} ${(item.price * item.quantity).toFixed(2)}</span>
               </div>
             `;
           }).join('')}
           <div class="divider"></div>
           <div class="item-row">
             <span>Subtotal (Excl. VAT):</span>
-            <span>${store.currency} ${transaction.subtotal.toFixed(2)}</span>
+            <span>${store.currency || 'SAR'} ${transaction.subtotal.toFixed(2)}</span>
           </div>
           ${transaction.discount > 0 ? `
             <div class="item-row">
               <span>Discount:</span>
-              <span>-${store.currency} ${transaction.discount.toFixed(2)}</span>
+              <span>-${store.currency || 'SAR'} ${transaction.discount.toFixed(2)}</span>
             </div>
           ` : ''}
           <div class="item-row">
-            <span>VAT / ضريبة القيمة المضافة (${store.taxRate}%):</span>
-            <span>${store.currency} ${transaction.tax.toFixed(2)}</span>
+            <span>VAT / ضريبة القيمة المضافة (${store.taxRate || 15}%):</span>
+            <span>${store.currency || 'SAR'} ${transaction.tax.toFixed(2)}</span>
           </div>
           <div class="item-row bold" style="font-size: 13px;">
             <span>Total (Incl. VAT):</span>
-            <span>${store.currency} ${transaction.total.toFixed(2)}</span>
+            <span>${store.currency || 'SAR'} ${transaction.total.toFixed(2)}</span>
           </div>
           <div class="divider"></div>
           <div class="item-row">
@@ -154,22 +154,22 @@ function ReceiptModal({ isOpen, onClose, transaction, store }) {
           </div>
           <div class="item-row">
             <span>Amount Paid:</span>
-            <span>${store.currency} ${transaction.cashReceived.toFixed(2)}</span>
+            <span>${store.currency || 'SAR'} ${transaction.cashReceived.toFixed(2)}</span>
           </div>
           <div class="item-row">
             <span>Change Due:</span>
-            <span>${store.currency} ${transaction.changeDue.toFixed(2)}</span>
+            <span>${store.currency || 'SAR'} ${transaction.changeDue.toFixed(2)}</span>
           </div>
           
           <div class="divider"></div>
           
           <!-- ZATCA QR Code -->
           <div class="qr-container">
-            ${qrUrl ? `<img class="qr-image" src="${qrUrl}" />` : ''}
+            ${qrUrl ? `<img class="qr-image" src="${qrUrl}" onload="window.printed = true; window.print(); window.close();" />` : ''}
           </div>
           
           <div class="text-center" style="font-size: 9px; color: #555;">
-            ${store.receiptFooter}
+            ${store.receiptFooter || ''}
           </div>
         </body>
       </html>
